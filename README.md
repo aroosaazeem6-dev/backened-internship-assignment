@@ -174,60 +174,59 @@ http://localhost:3000
 
 ---
 
-# SQL Queries Executed
+## SQL Queries Executed
 
-Retrieve all tasks
+### Retrieve all tasks
 
 ```sql
 SELECT * FROM tasks;
+```
 
-```<img width="632" height="503" alt="Database " src="https://github.com/user-attachments/assets/0938a028-536e-4dbe-bb59-f5e87a19b1ce" />
+<img width="632" height="503" alt="Database" src="https://github.com/user-attachments/assets/0938a028-536e-4dbe-bb59-f5e87a19b1ce" />
 
-Retrieve completed tasks
+---
+
+### Retrieve completed tasks
 
 ```sql
 SELECT * FROM tasks WHERE done = 1;
 ```
 
-Count tasks
+---
+
+### Count tasks
 
 ```sql
 SELECT COUNT(*) FROM tasks;
+```
 
-```<img width="629" height="500" alt="Database2" src="https://github.com/user-attachments/assets/425770ad-293f-4bc7-8ab0-bb03a2e8709f" />
+<img width="629" height="500" alt="Database2" src="https://github.com/user-attachments/assets/425770ad-293f-4bc7-8ab0-bb03a2e8709f" />
 
+---
 
-Update completion status
+### Mark all tasks as completed
 
 ```sql
 UPDATE tasks
 SET done = 1;
 ```
 
-Delete completed tasks
+---
+
+### Delete completed tasks
 
 ```sql
 DELETE FROM tasks
 WHERE done = 1;
 ```
-
 ---
 
 # Database Preview
 
-Place your screenshot inside:
+The following screenshot shows the SQLite database opened in **DB Browser for SQLite**.
 
-```
-images/sqlite-database.png
-```
+<img width="629" height="503" alt="Database3" src="https://github.com/user-attachments/assets/58702988-54d1-4ce0-b971-79e52ffedac7" />
 
-Then simply use
-
-```markdown
-![SQLite Database](images/sqlite-database.png)
-```
-
----
 
 # Testing
 
