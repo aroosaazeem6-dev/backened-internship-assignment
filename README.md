@@ -232,6 +232,9 @@ The following screenshot shows the SQLite database opened in **DB Browser for SQ
 
 The API was tested using **Postman**.
 
+<img width="959" height="506" alt="Postman" src="https://github.com/user-attachments/assets/ef5da770-66c8-44e5-8697-c1a95e8aae81" />
+
+
 The following operations were verified successfully:
 
 | Operation | Status |
