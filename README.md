@@ -128,13 +128,13 @@ The application automatically creates the database and inserts sample data when 
 Clone the repository
 
 ```bash
-git clone https://github.com/aroosaazeem6-dev/backend-week3-sqlite.git
+git clone https://github.com/aroosaazeem6-dev/backened-internship-assignment.git
 ```
 
 Navigate to the project
 
 ```bash
-cd backend-week3-sqlite
+cd backened-internship-assignment
 ```
 
 Install dependencies
@@ -193,8 +193,8 @@ Count tasks
 
 ```sql
 SELECT COUNT(*) FROM tasks;
-```
-<img width="629" height="500" alt="Database2" src="https://github.com/user-attachments/assets/425770ad-293f-4bc7-8ab0-bb03a2e8709f" />
+
+```<img width="629" height="500" alt="Database2" src="https://github.com/user-attachments/assets/425770ad-293f-4bc7-8ab0-bb03a2e8709f" />
 
 
 Update completion status
