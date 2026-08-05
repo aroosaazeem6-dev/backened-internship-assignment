@@ -66,6 +66,62 @@ app.post("/tasks", (req, res) => {
 
 });
 
+// Update a task
+app.put("/tasks/:id", (req, res) => {
+
+    const id = req.params.id;
+    const { title, done } = req.body;
+
+    // Check if task exists
+    const task = db
+        .prepare("SELECT * FROM tasks WHERE id = ?")
+        .get(id);
+
+    if (!task) {
+        return res.status(404).json({
+            error: "Task not found"
+        });
+    }
+
+    // Update task
+    db.prepare(
+        "UPDATE tasks SET title = ?, done = ? WHERE id = ?"
+    ).run(title, done, id);
+
+    // Return updated task
+    const updatedTask = db
+        .prepare("SELECT * FROM tasks WHERE id = ?")
+        .get(id);
+
+    res.status(200).json(updatedTask);
+
+});
+
+// Delete a task
+app.delete("/tasks/:id", (req, res) => {
+
+    const id = req.params.id;
+
+    // Check if task exists
+    const task = db
+        .prepare("SELECT * FROM tasks WHERE id = ?")
+        .get(id);
+
+    if (!task) {
+        return res.status(404).json({
+            error: "Task not found"
+        });
+    }
+
+    // Delete task
+    db.prepare("DELETE FROM tasks WHERE id = ?").run(id);
+
+    res.status(200).json({
+        message: "Task deleted successfully"
+    });
+
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
