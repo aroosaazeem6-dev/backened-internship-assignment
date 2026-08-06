@@ -1,32 +1,24 @@
-const Database = require("better-sqlite3");
+require("dotenv").config();
 
-const db = new Database("tasks.db");
+const { Pool } =require("pg");
 
-// Create table if it doesn't exist
-db.prepare(`
-CREATE TABLE IF NOT EXISTS tasks (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    done INTEGER NOT NULL
-)
-`).run();
+const pool = new Pool({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+});
 
-// Check if table is empty
-const count = db.prepare("SELECT COUNT(*) AS count FROM tasks").get();
+// Test the connection
+pool.connect()
+    .then(client => {
+        console.log("Connected to PostgreSQL successfully!");
+        client.release();
+    })
+    .catch(err => {
+        console.error("Failed to connect to PostgreSQL:");
+        console.error(err.message);
+    });
 
-if (count.count === 0) {
-
-    const insert = db.prepare(
-        "INSERT INTO tasks (title, done) VALUES (?, ?)"
-    );
-
-    insert.run("Learn Express", 0);
-    insert.run("Learn SQLite", 0);
-    insert.run("Build CRUD API", 0);
-
-    console.log("Example tasks inserted.");
-}
-
-console.log("Database connected successfully.");
-
-module.exports = db;
+module.exports = pool;
