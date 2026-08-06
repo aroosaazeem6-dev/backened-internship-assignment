@@ -1,5 +1,7 @@
 <div align="center">
 
+## Assigment "A2" Connecting To Database
+
 # Backend SQLite CRUD API
 
 A RESTful Task Management API built with **Node.js**, **Express.js**, and **SQLite**.
@@ -255,3 +257,222 @@ The following operations were verified successfully:
 Backend AI Engineering Internship
 
 Week 3 — SQLite CRUD Assignment
+
+
+---
+
+
+
+<div align="center">
+
+
+## Assignment "A3" – PostgreSQL with Docker & Docker Compose
+
+</div>
+
+## Overview
+
+This assignment upgrades the Task Management API from SQLite to PostgreSQL while containerizing the entire application using Docker and Docker Compose. The application now runs with a single command, stores data in PostgreSQL, and persists data across container restarts using Docker volumes.
+
+---
+
+## Objectives
+
+- Replace the SQLite database with PostgreSQL
+- Containerize the Node.js application using Docker
+- Manage the application and database with Docker Compose
+- Store sensitive configuration using environment variables
+- Persist data using Docker volumes
+- Keep the API routes unchanged while replacing the database layer
+- Verify persistence after restarting both the application and database containers
+
+---
+
+## Technologies Used
+
+| Technology | Purpose |
+|------------|---------|
+| Node.js | Runtime Environment |
+| Express.js | REST API Framework |
+| PostgreSQL | Relational Database |
+| pg | PostgreSQL Client |
+| Docker | Containerization |
+| Docker Compose | Multi-container Orchestration |
+| dotenv | Environment Variable Management |
+| Postman | API Testing |
+
+---
+
+## Project Structure
+
+```text
+.
+├── app.js
+├── database.js
+├── Dockerfile
+├── docker-compose.yml
+├── init.sql
+├── .env.example
+├── .dockerignore
+├── package.json
+└── README.md
+```
+
+---
+
+## Docker Architecture
+
+```
+                Docker Compose
+                      │
+      ┌───────────────┴───────────────┐
+      │                               │
+┌───────────────┐              ┌───────────────┐
+│   Express API │────────────▶│   PostgreSQL   │
+│   (Node.js)   │              │   Database     │
+└───────────────┘              └───────────────┘
+         │                              │
+         └──────── Docker Network ──────┘
+                        │
+                 Persistent Volume
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file using the provided `.env.example`.
+
+```env
+DB_HOST=db
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=dev
+DB_NAME=tasks
+```
+
+---
+
+## Docker Commands
+
+### Build and Start
+
+```bash
+docker compose up --build
+```
+
+### Stop Containers
+
+```bash
+docker compose down
+```
+
+### View Running Containers
+
+```bash
+docker compose ps
+```
+
+### View Logs
+
+```bash
+docker compose logs
+```
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/` | Home Route |
+| GET | `/tasks` | Retrieve all tasks |
+| GET | `/tasks/:id` | Retrieve task by ID |
+| POST | `/tasks` | Create a new task |
+| PUT | `/tasks/:id` | Update an existing task |
+| DELETE | `/tasks/:id` | Delete a task |
+
+---
+
+## Database Initialization
+
+The PostgreSQL database is automatically initialized using the `init.sql` script during the first container startup.
+
+The script:
+
+- Creates the `tasks` table
+- Inserts sample records
+- Prepares the database for immediate API usage
+
+---
+
+## Data Persistence
+
+Persistence was verified using Docker volumes.
+
+Verification process:
+
+1. Started the application using Docker Compose.
+2. Created new tasks through the REST API.
+3. Stopped both containers.
+4. Restarted the complete stack.
+5. Retrieved all tasks successfully.
+6. Confirmed that previously created data remained available.
+
+This demonstrates that data persists independently of the application container lifecycle.
+
+---
+
+## Assignment Highlights
+
+- Migrated from SQLite to PostgreSQL
+- Implemented PostgreSQL connectivity using the `pg` package
+- Used environment variables for secure configuration
+- Containerized the complete application
+- Managed multiple containers using Docker Compose
+- Demonstrated persistent database storage using Docker volumes
+- Preserved existing REST API endpoints without changing route logic
+
+---
+
+## Screenshots
+
+### PostgreSQL Connection Successful
+
+<img width="452" height="361" alt="PostgreeSQL" src="https://github.com/user-attachments/assets/3527f1b1-f131-48f8-978e-3d0513261036" />
+
+---
+
+### CRUD Operations
+
+<img width="953" height="504" alt="Postman 3 1" src="https://github.com/user-attachments/assets/dd1a5ba6-c1fb-4f7d-be2c-f8e626aac489" />
+
+<img width="941" height="487" alt="Postaman 32" src="https://github.com/user-attachments/assets/aa562833-a294-4020-8291-7d93970a7e69" />
+
+---
+
+### Persistence Verification
+
+<img width="955" height="503" alt="Postman Persistence 3 3" src="https://github.com/user-attachments/assets/22b91d8f-03f0-47c9-8d57-e75777ad2d55" />
+
+---
+
+## Learning Outcomes
+
+Through this assignment I learned:
+
+- Docker containerization
+- Docker Compose orchestration
+- PostgreSQL integration with Node.js
+- Environment variable management
+- Persistent Docker volumes
+- Database migration from SQLite to PostgreSQL
+- Maintaining application architecture while changing the database layer
+
+---
+
+## Author
+
+**Aroosa Azeem**
+
+FlyRank Backend Internship
